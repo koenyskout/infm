@@ -1,0 +1,13 @@
+services:
+  opcua-server-demo:
+    #image: bodiroga/opcua-server-demo
+    image: opcua-server-demo
+    container_name: opcua-server-demo
+    ports:
+      - "4840:4840"
+    volumes:
+      - opcua-demo-certificates:/certificates
+    restart: unless-stopped
+volumes:
+  opcua-demo-certificates:
+    name: opcua-demo-certificates
