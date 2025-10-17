@@ -1,0 +1,5 @@
+services:
+  my-opcua-server:
+    build: .
+    ports:
+      - "4840:4840"
