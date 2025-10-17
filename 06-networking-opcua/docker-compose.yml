@@ -1,7 +1,6 @@
 services:
   opcua-server-demo:
-    #image: bodiroga/opcua-server-demo
-    image: opcua-server-demo
+    image: bodiroga/opcua-server-demo
     container_name: opcua-server-demo
     ports:
       - "4840:4840"
