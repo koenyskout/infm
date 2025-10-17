@@ -1,0 +1,6 @@
+services:
+  emqx:
+    image: emqx/emqx:latest
+    ports:
+      - "1883:1883"    # MQTT
+      - "18083:18083"  # Dashboard
