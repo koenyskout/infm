@@ -1,0 +1,129 @@
+services:
+  nodered:
+    image: nodered/node-red:latest
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./data/nodered_data:/data  
+    environment:
+      - TZ=Europe/Amsterdam
+    networks:
+      - silentfrikandel_net
+    entrypoint: >
+      sh -c "
+        cd /data &&
+        if [ ! -d node_modules/node-red-dashboard ]; then
+          echo 'Installing node-red-dashboard..' &&
+          npm install node-red-dashboard
+        fi &&
+        if [ ! -d node_modules/node-red-contrib-play-audio ]; then
+          echo 'Installing node-red-contrib-play-audio...' &&
+          npm install node-red-contrib-play-audio
+        fi &&
+        if [ ! -d node_modules/node-red-node-ui-microphone ]; then
+          echo 'Installing node-red-node-ui-microphone...' &&
+          npm install node-red-node-ui-microphone
+        fi &&
+        if [ ! -d node_modules/node-red-contrib-opcua ]; then
+          echo 'Installing node-red-contrib-opcua...' &&
+          npm install node-red-contrib-opcua
+        fi &&
+        node-red --userDir /data
+      "
+
+  nodered2:
+    image: nodered/node-red:latest
+    restart: unless-stopped
+    ports:
+      - "1881:1880"
+    volumes:
+      - ./data/nodered2_data:/data  
+    networks:
+      - silentfrikandel_net
+    entrypoint: >
+      sh -c "
+        cd /data &&
+        if [ ! -d node_modules/node-red-dashboard ]; then
+          echo 'Installing node-red-dashboard..' &&
+          npm install node-red-dashboard
+        fi &&
+        if [ ! -d node_modules/node-red-contrib-play-audio ]; then
+          echo 'Installing node-red-contrib-play-audio...' &&
+          npm install node-red-contrib-play-audio
+        fi &&
+        if [ ! -d node_modules/node-red-node-ui-microphone ]; then
+          echo 'Installing node-red-node-ui-microphone...' &&
+          npm install node-red-node-ui-microphone
+        fi &&
+        if [ ! -d node_modules/node-red-contrib-opcua ]; then
+          echo 'Installing node-red-contrib-opcua...' &&
+          npm install node-red-contrib-opcua
+        fi &&
+        node-red --userDir /data     
+      "
+    
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./data/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - silentfrikandel_net
+
+  ctf_games:
+    build:
+      context: ./ctf_games
+    restart: unless-stopped
+    environment:
+      - MQTT_Broker=mosquitto
+      - MQTT_Port=1883
+    depends_on:
+      - mosquitto
+    networks:
+      - silentfrikandel_net
+
+  sensor_simulator:
+    build:
+      context: ./ctf_games
+    restart: unless-stopped
+    environment:
+      - MQTT_Broker=mosquitto
+      - MQTT_Port=1883
+    depends_on:
+      - mosquitto
+    command: python sensor_simulator.py
+    networks:
+      - silentfrikandel_net
+
+  challenge_simulator:
+    build:
+      context: ./ctf_games
+    restart: unless-stopped
+    environment:
+      - MQTT_Broker=mosquitto
+      - MQTT_Port=1883
+    ports:
+      - "4840:4840" 
+    depends_on:
+      - mosquitto
+    command: python challenge_simulator.py
+    networks:
+      - silentfrikandel_net
+
+  webapp_interface:
+    build:
+      context: ./webapp_interface
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    networks:
+      - silentfrikandel_net
+
+networks:
+  silentfrikandel_net:
+    driver: bridge
+

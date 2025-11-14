@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "node-red-contrib-opcua": "^0.2.345",
+    "node-red-contrib-play-audio": "^2.5.0",
+    "node-red-dashboard": "^3.6.6",
+    "node-red-node-ui-microphone": "^0.3.1"
+  }
+}

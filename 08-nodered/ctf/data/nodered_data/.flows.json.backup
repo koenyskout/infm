@@ -1,0 +1,1907 @@
+[
+    {
+        "id": "8f25e8ed5359ab96",
+        "type": "tab",
+        "label": "SilentFrikandel Sensors & Controls",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "0ed6133af769f598",
+        "type": "mqtt-broker",
+        "name": "MosquittoSilentFrikandel",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dashboard_tab",
+        "type": "ui_tab",
+        "name": "SilentFrikandel Deck 4 - Life Support",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f31d40476dd87058",
+        "type": "ui_group",
+        "name": "Sensor Readings",
+        "tab": "dashboard_tab",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "59b681d789eac7e2",
+        "type": "ui_group",
+        "name": "Historical Data",
+        "tab": "dashboard_tab",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "088026daa158adca",
+        "type": "ui_group",
+        "name": "Door Control System",
+        "tab": "dashboard_tab",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "5bba670aae503f74",
+        "type": "ui_group",
+        "name": "Emergency Oxygen System",
+        "tab": "dashboard_tab",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "c0876ae067662a94",
+        "type": "ui_group",
+        "name": "Defense Systems",
+        "tab": "dashboard_tab",
+        "order": 5,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "5bf74aba9021f274",
+        "type": "ui_group",
+        "name": "Door Status Monitor",
+        "tab": "dashboard_tab",
+        "order": 6,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "gatecode_group",
+        "type": "ui_group",
+        "name": "Gate Code Entry",
+        "tab": "dashboard_tab",
+        "order": 6,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "flag_status_group",
+        "type": "ui_group",
+        "name": "Challenge Flags",
+        "tab": "dashboard_tab",
+        "order": 7,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4f6c7eb18f926081",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "opcua_dashboard_tab",
+        "type": "ui_tab",
+        "name": "OPC UA Demo",
+        "icon": "settings_ethernet",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "opcua_gauges",
+        "type": "ui_group",
+        "name": "Aircraft Systems (OPC UA)",
+        "tab": "opcua_dashboard_tab",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "opcua_charts",
+        "type": "ui_group",
+        "name": "Telemetry History",
+        "tab": "opcua_dashboard_tab",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "opcua_info_group",
+        "type": "ui_group",
+        "name": "Information",
+        "tab": "opcua_dashboard_tab",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "a328d0f7d899a3eb",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://localhost:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "ee88e86f288d7ff9",
+        "type": "ui_group",
+        "name": "Challenge Flags",
+        "tab": "dashboard_tab",
+        "order": 7,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0795a2e305f4a89c",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Oxygen Sensor",
+        "topic": "silentfrikandel/deck4/oxygen",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "a66b1f5c407ad52b",
+                "fbf03ab0e1833c55",
+                "0787f95ba7cfba17",
+                "9dca20cfe25a85e4"
+            ]
+        ]
+    },
+    {
+        "id": "85229146caf43d24",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Temperature Sensor",
+        "topic": "silentfrikandel/deck4/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "30c936423069bccf",
+                "7784c7e2561434cf",
+                "ec8bd47382b40382"
+            ]
+        ]
+    },
+    {
+        "id": "2b26d215bf0239f3",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Pressure Sensor",
+        "topic": "silentfrikandel/deck4/pressure",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "7786616edaf0c251",
+                "907c431f2bd84537",
+                "de9329efb5e655f8"
+            ]
+        ]
+    },
+    {
+        "id": "0787f95ba7cfba17",
+        "type": "debug",
+        "z": "8f25e8ed5359ab96",
+        "name": "O2 Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 380,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ec8bd47382b40382",
+        "type": "debug",
+        "z": "8f25e8ed5359ab96",
+        "name": "Temp Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 390,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "de9329efb5e655f8",
+        "type": "debug",
+        "z": "8f25e8ed5359ab96",
+        "name": "Pressure Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 410,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a66b1f5c407ad52b",
+        "type": "ui_gauge",
+        "z": "8f25e8ed5359ab96",
+        "name": "Oxygen Level",
+        "group": "f31d40476dd87058",
+        "order": 1,
+        "width": "4",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Oxygen Level",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "25",
+        "colors": [
+            "#ca3838",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "16",
+        "seg2": "19",
+        "className": "",
+        "x": 400,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "30c936423069bccf",
+        "type": "ui_gauge",
+        "z": "8f25e8ed5359ab96",
+        "name": "Temperature",
+        "group": "f31d40476dd87058",
+        "order": 2,
+        "width": "4",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "15",
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "20",
+        "seg2": "25",
+        "className": "",
+        "x": 390,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "7786616edaf0c251",
+        "type": "ui_gauge",
+        "z": "8f25e8ed5359ab96",
+        "name": "Pressure",
+        "group": "f31d40476dd87058",
+        "order": 3,
+        "width": "4",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Pressure",
+        "label": "kPa",
+        "format": "{{value}}",
+        "min": "95",
+        "max": "105",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#ca3838"
+        ],
+        "seg1": "98",
+        "seg2": "102",
+        "className": "",
+        "x": 380,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "fbf03ab0e1833c55",
+        "type": "ui_chart",
+        "z": "8f25e8ed5359ab96",
+        "name": "O2 History",
+        "group": "59b681d789eac7e2",
+        "order": 1,
+        "width": "12",
+        "height": "5",
+        "label": "Oxygen Level History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Waiting for data...",
+        "dot": false,
+        "ymin": "15",
+        "ymax": "25",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 390,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7784c7e2561434cf",
+        "type": "ui_chart",
+        "z": "8f25e8ed5359ab96",
+        "name": "Temp History",
+        "group": "59b681d789eac7e2",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "label": "Temperature History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Waiting for data...",
+        "dot": false,
+        "ymin": "15",
+        "ymax": "30",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff7f0e"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 390,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "907c431f2bd84537",
+        "type": "ui_chart",
+        "z": "8f25e8ed5359ab96",
+        "name": "Pressure History",
+        "group": "59b681d789eac7e2",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "label": "Pressure History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Waiting for data...",
+        "dot": false,
+        "ymin": "95",
+        "ymax": "105",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#2ca02c"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 410,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9dca20cfe25a85e4",
+        "type": "switch",
+        "z": "8f25e8ed5359ab96",
+        "name": "O2 Critical?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "16",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "19d5dfdf8ba9aae2"
+            ]
+        ]
+    },
+    {
+        "id": "19d5dfdf8ba9aae2",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "CRITICAL ALERT - OXYGEN LOW",
+        "name": "Oxygen Alert",
+        "x": 630,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "03baa4c2ac918226",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Close Door 1",
+        "group": "088026daa158adca",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Close Door 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "className": "",
+        "icon": "",
+        "payload": "{\"door\":1,\"status\":\"closed\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "9d150aacce29f3c1",
+                "5674f62575daf627"
+            ]
+        ]
+    },
+    {
+        "id": "43291570d3d6d2b2",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Close Door 2",
+        "group": "088026daa158adca",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Close Door 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "className": "",
+        "icon": "",
+        "payload": "{\"door\":2,\"status\":\"closed\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "8221f8df416f4273",
+                "0f378f94ccf62d7f"
+            ]
+        ]
+    },
+    {
+        "id": "624b279ce5f71681",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Close Door 3",
+        "group": "088026daa158adca",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Close Door 3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "className": "",
+        "icon": "",
+        "payload": "{\"door\":3,\"status\":\"closed\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 150,
+        "y": 820,
+        "wires": [
+            [
+                "40cb6b0ad5e34c80",
+                "f98a769b0facb916"
+            ]
+        ]
+    },
+    {
+        "id": "8091deda336856c3",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Close Door 4",
+        "group": "088026daa158adca",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Close Door 4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "className": "",
+        "icon": "",
+        "payload": "{\"door\":4,\"status\":\"closed\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 150,
+        "y": 940,
+        "wires": [
+            [
+                "d41a28f7162b78c6",
+                "1a8c6ff234ee2631"
+            ]
+        ]
+    },
+    {
+        "id": "9d150aacce29f3c1",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 1 MQTT",
+        "topic": "silentfrikandel/deck4/doors/1",
+        "qos": "0",
+        "retain": "",
+        "broker": "0ed6133af769f598",
+        "x": 400,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "8221f8df416f4273",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 2 MQTT",
+        "topic": "silentfrikandel/deck4/doors/2",
+        "qos": "0",
+        "retain": "",
+        "broker": "0ed6133af769f598",
+        "x": 400,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "40cb6b0ad5e34c80",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 3 MQTT",
+        "topic": "silentfrikandel/deck4/doors/3",
+        "qos": "0",
+        "retain": "",
+        "broker": "0ed6133af769f598",
+        "x": 400,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "d41a28f7162b78c6",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 4 MQTT",
+        "topic": "silentfrikandel/deck4/doors/4",
+        "qos": "0",
+        "retain": "",
+        "broker": "0ed6133af769f598",
+        "x": 400,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "5674f62575daf627",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Update Door 1 Status",
+        "func": "flow.set('door1_closed', true);\nreturn msg;",
+        "outputs": 1,
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "6720a9f35243ca75"
+            ]
+        ]
+    },
+    {
+        "id": "0f378f94ccf62d7f",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Update Door 2 Status",
+        "func": "flow.set('door2_closed', true);\nreturn msg;",
+        "outputs": 1,
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "6720a9f35243ca75"
+            ]
+        ]
+    },
+    {
+        "id": "f98a769b0facb916",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Update Door 3 Status",
+        "func": "flow.set('door3_closed', true);\nreturn msg;",
+        "outputs": 1,
+        "x": 420,
+        "y": 880,
+        "wires": [
+            [
+                "6720a9f35243ca75"
+            ]
+        ]
+    },
+    {
+        "id": "1a8c6ff234ee2631",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Update Door 4 Status",
+        "func": "flow.set('door4_closed', true);\nreturn msg;",
+        "outputs": 1,
+        "x": 420,
+        "y": 980,
+        "wires": [
+            [
+                "6720a9f35243ca75"
+            ]
+        ]
+    },
+    {
+        "id": "6720a9f35243ca75",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Check All Doors Closed",
+        "func": "const door1 = flow.get('door1_closed') || false;\nconst door2 = flow.get('door2_closed') || false;\nconst door3 = flow.get('door3_closed') || false;\nconst door4 = flow.get('door4_closed') || false;\n\nconst allClosed = door1 && door2 && door3 && door4;\n\nif (allClosed) {\n    flow.set('emergency_oxygen_enabled', true);\n    msg.payload = 'All doors sealed! Emergency oxygen system ENABLED';\n    return msg;\n}\n\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 820,
+        "wires": [
+            [
+                "f0c439b12ebdd5d1",
+                "f248a67f51d4055b"
+            ]
+        ]
+    },
+    {
+        "id": "f0c439b12ebdd5d1",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "088026daa158adca",
+        "order": 6,
+        "width": "12",
+        "height": "2",
+        "name": "Door Status",
+        "label": "Status:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 930,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "f248a67f51d4055b",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "green",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "SYSTEM READY",
+        "name": "Enable Notification",
+        "x": 940,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "27b7867b88df1db2",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Reset All Doors",
+        "group": "088026daa158adca",
+        "order": 5,
+        "width": "12",
+        "height": "1",
+        "passthru": false,
+        "label": "RESET - Open All Doors",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#FF8C00",
+        "className": "",
+        "icon": "",
+        "payload": "reset",
+        "payloadType": "str",
+        "topic": "",
+        "x": 140,
+        "y": 1120,
+        "wires": [
+            [
+                "3419e9fba84cce36",
+                "8dbeddef05416d74",
+                "a5bec8da497ce06a",
+                "d54dc45dd434d865",
+                "2f4ab8bbd4d2cfb8",
+                "cefc336a8ba218ac",
+                "e787c6e2f851252c"
+            ]
+        ]
+    },
+    {
+        "id": "e787c6e2f851252c",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Reset Flow Variables",
+        "func": "flow.set('door1_closed', false);\nflow.set('door2_closed', false);\nflow.set('door3_closed', false);\nflow.set('door4_closed', false);\nflow.set('emergency_oxygen_enabled', false);\nreturn msg;",
+        "outputs": 1,
+        "x": 460,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3419e9fba84cce36",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Open Door 1",
+        "func": "msg.topic = 'silentfrikandel/deck4/doors/1';\nmsg.payload = JSON.stringify({door: 1, status: 'open'});\nreturn msg;",
+        "outputs": 1,
+        "x": 430,
+        "y": 1040,
+        "wires": [
+            [
+                "2d0991ed44b9b809"
+            ]
+        ]
+    },
+    {
+        "id": "8dbeddef05416d74",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Open Door 2",
+        "func": "msg.topic = 'silentfrikandel/deck4/doors/2';\nmsg.payload = JSON.stringify({door: 2, status: 'open'});\nreturn msg;",
+        "outputs": 1,
+        "x": 430,
+        "y": 1080,
+        "wires": [
+            [
+                "2d0991ed44b9b809"
+            ]
+        ]
+    },
+    {
+        "id": "a5bec8da497ce06a",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Open Door 3",
+        "func": "msg.topic = 'silentfrikandel/deck4/doors/3';\nmsg.payload = JSON.stringify({door: 3, status: 'open'});\nreturn msg;",
+        "outputs": 1,
+        "x": 430,
+        "y": 1120,
+        "wires": [
+            [
+                "2d0991ed44b9b809"
+            ]
+        ]
+    },
+    {
+        "id": "d54dc45dd434d865",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Open Door 4",
+        "func": "msg.topic = 'silentfrikandel/deck4/doors/4';\nmsg.payload = JSON.stringify({door: 4, status: 'open'});\nreturn msg;",
+        "outputs": 1,
+        "x": 430,
+        "y": 1180,
+        "wires": [
+            [
+                "2d0991ed44b9b809"
+            ]
+        ]
+    },
+    {
+        "id": "2d0991ed44b9b809",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Reset MQTT",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 690,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "2f4ab8bbd4d2cfb8",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "orange",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "SYSTEM RESET",
+        "name": "Reset Notification",
+        "x": 450,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "cefc336a8ba218ac",
+        "type": "change",
+        "z": "8f25e8ed5359ab96",
+        "name": "Set Reset Message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "All doors OPEN - Emergency oxygen DISABLED",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1240,
+        "wires": [
+            [
+                "f0c439b12ebdd5d1"
+            ]
+        ]
+    },
+    {
+        "id": "46119d244f7ec429",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Activate Emergency Oxygen",
+        "group": "5bba670aae503f74",
+        "order": 1,
+        "width": "6",
+        "height": "2",
+        "passthru": false,
+        "label": "ACTIVATE EMERGENCY OXYGEN",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#00AA00",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "",
+        "topicType": "str",
+        "x": 1230,
+        "y": 660,
+        "wires": [
+            [
+                "53c1fbb6a3e4e2b9"
+            ]
+        ]
+    },
+    {
+        "id": "53c1fbb6a3e4e2b9",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Check If Allowed",
+        "func": "const enabled = flow.get('emergency_oxygen_enabled') || false;\n\nif (enabled) {\n    msg.payload = {\"action\": \"activate_emergency_oxygen\", \"timestamp\": new Date().toISOString()};\n    flow.set('defense_system', true);\n    return [msg, null];\n} else {\n    msg.payload = \"ERROR: All doors must be closed!\";\n    return [null, msg];\n}\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1510,
+        "y": 660,
+        "wires": [
+            [
+                "b7193124889c625b",
+                "9c49d24b41a69197"
+            ],
+            [
+                "dcb0c38c17b7f44f"
+            ]
+        ]
+    },
+    {
+        "id": "b7193124889c625b",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Emergency Oxygen MQTT",
+        "topic": "silentfrikandel/deck4/emergencyOxy",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 1800,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "9c49d24b41a69197",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "green",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "SUCCESS",
+        "name": "Success Toast",
+        "x": 1770,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "dcb0c38c17b7f44f",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "DOORS NOT SEALED",
+        "name": "Error Toast",
+        "x": 1760,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "a35dd75543fe2b58",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Activate Shield",
+        "group": "c0876ae067662a94",
+        "order": 1,
+        "width": "6",
+        "height": "2",
+        "passthru": false,
+        "label": "ACTIVATE SHIELD",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#0066CC",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "",
+        "topicType": "str",
+        "x": 2280,
+        "y": 480,
+        "wires": [
+            [
+                "7844835abe44ab1c"
+            ]
+        ]
+    },
+    {
+        "id": "26e0348743411dc0",
+        "type": "ui_button",
+        "z": "8f25e8ed5359ab96",
+        "name": "Launch Counter Attack",
+        "group": "c0876ae067662a94",
+        "order": 2,
+        "width": "6",
+        "height": "2",
+        "passthru": false,
+        "label": "LAUNCH COUNTER ATTACK",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#CC0000",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "",
+        "topicType": "str",
+        "x": 2300,
+        "y": 680,
+        "wires": [
+            [
+                "563f2081b9984aed"
+            ]
+        ]
+    },
+    {
+        "id": "7844835abe44ab1c",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Prepare Shield Data",
+        "func": "msg.payload = JSON.stringify({\n    action: 'activate_shield',\n    timestamp: new Date().toISOString(),\n    status: 'activated'\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2540,
+        "y": 480,
+        "wires": [
+            [
+                "acbf23ba5c8790c3",
+                "a19a2d5975e202b2"
+            ]
+        ]
+    },
+    {
+        "id": "563f2081b9984aed",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Prepare Attack Data",
+        "func": "msg.payload = JSON.stringify({\n    action: 'counter_attack',\n    timestamp: new Date().toISOString(),\n    status: 'launched'\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2560,
+        "y": 680,
+        "wires": [
+            [
+                "0b18ab1869abbdea",
+                "aa3fc8fbe26c9f37"
+            ]
+        ]
+    },
+    {
+        "id": "0b18ab1869abbdea",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Shield MQTT",
+        "topic": "silentfrikandel/deck4/shield",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 2850,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "a19a2d5975e202b2",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Attack MQTT",
+        "topic": "silentfrikandel/deck4/attack",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 2830,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "acbf23ba5c8790c3",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "blue",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "SHIELD ACTIVATED",
+        "name": "Shield Notification",
+        "x": 2850,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "aa3fc8fbe26c9f37",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "COUNTER ATTACK LAUNCHED",
+        "name": "Attack Notification",
+        "x": 2850,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "56f81e4762f85b89",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 1 Status",
+        "topic": "silentfrikandel/deck4/doors/1/status",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1220,
+        "y": 400,
+        "wires": [
+            [
+                "aa58d6e3d85a8cb7"
+            ]
+        ]
+    },
+    {
+        "id": "33d6f7d5f5f078d6",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 2 Status",
+        "topic": "silentfrikandel/deck4/doors/2/status",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1220,
+        "y": 460,
+        "wires": [
+            [
+                "3cbf92fbf03c990a"
+            ]
+        ]
+    },
+    {
+        "id": "00c9da5b8ff67253",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 3 Status",
+        "topic": "silentfrikandel/deck4/doors/3/status",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1220,
+        "y": 520,
+        "wires": [
+            [
+                "1366155773f237e7"
+            ]
+        ]
+    },
+    {
+        "id": "9f81d263ce00e0b7",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Door 4 Status",
+        "topic": "silentfrikandel/deck4/doors/4/status",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1220,
+        "y": 580,
+        "wires": [
+            [
+                "478fb526ff177a4e"
+            ]
+        ]
+    },
+    {
+        "id": "aa58d6e3d85a8cb7",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "5bf74aba9021f274",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "name": "Door 1 Status Display",
+        "label": "Door 1:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1500,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3cbf92fbf03c990a",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "5bf74aba9021f274",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "name": "Door 2 Status Display",
+        "label": "Door 2:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1500,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "1366155773f237e7",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "5bf74aba9021f274",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "name": "Door 3 Status Display",
+        "label": "Door 3:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1500,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "478fb526ff177a4e",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "5bf74aba9021f274",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "name": "Door 4 Status Display",
+        "label": "Door 4:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1500,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "9d1dff39b391b034",
+        "type": "inject",
+        "z": "8f25e8ed5359ab96",
+        "name": "FLAGS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"flag\": \"____\"}",
+        "payloadType": "json",
+        "x": 1190,
+        "y": 80,
+        "wires": [
+            [
+                "34ef9552d657b267"
+            ]
+        ]
+    },
+    {
+        "id": "34ef9552d657b267",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "",
+        "topic": "silentfrikandel/X/challenge1/flag",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 1730,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "caf55bf52df98ffd",
+        "type": "inject",
+        "z": "8f25e8ed5359ab96",
+        "name": "FLAGS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"flag\": \"____\"}",
+        "payloadType": "json",
+        "x": 1190,
+        "y": 180,
+        "wires": [
+            [
+                "a0f93f1023a474b5"
+            ]
+        ]
+    },
+    {
+        "id": "a0f93f1023a474b5",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "",
+        "topic": "silentfrikandel/X/challenge2/flag",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 1730,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "0435d3a44d118fe2",
+        "type": "inject",
+        "z": "8f25e8ed5359ab96",
+        "name": "FLAGS",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"flag\": \"_______\"}",
+        "payloadType": "json",
+        "x": 1190,
+        "y": 280,
+        "wires": [
+            [
+                "690af22efcf70ad0"
+            ]
+        ]
+    },
+    {
+        "id": "690af22efcf70ad0",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "",
+        "topic": "silentfrikandel/X/challenge3/flag",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 1730,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9648dae042d2bbe5",
+        "type": "ui_text_input",
+        "z": "8f25e8ed5359ab96",
+        "name": "Gate Code Input",
+        "label": "Enter Gate Code:",
+        "tooltip": "Input the gate code from the website",
+        "group": "gatecode_group",
+        "order": 1,
+        "width": "8",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "",
+        "topicType": "str",
+        "x": 1240,
+        "y": 840,
+        "wires": [
+            [
+                "173fcd970e2d94d0"
+            ]
+        ]
+    },
+    {
+        "id": "173fcd970e2d94d0",
+        "type": "function",
+        "z": "8f25e8ed5359ab96",
+        "name": "Prepare Gate Code",
+        "func": "if (msg.payload && msg.payload.trim() !== '') {\n    msg.payload = JSON.stringify({code: msg.payload.trim()});\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 840,
+        "wires": [
+            [
+                "44a147acb23db707"
+            ]
+        ]
+    },
+    {
+        "id": "44a147acb23db707",
+        "type": "mqtt out",
+        "z": "8f25e8ed5359ab96",
+        "name": "Publish Gate Code",
+        "topic": "silentfrikandel/deck4/gatecode",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0ed6133af769f598",
+        "x": 1740,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "507ee939a2fdb67b",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Challenge 1 Flag",
+        "topic": "silentfrikandel/deck4/challenge1/flag",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1230,
+        "y": 1300,
+        "wires": [
+            [
+                "4078ac00c2b4996f",
+                "bff22ec4da48aec8"
+            ]
+        ]
+    },
+    {
+        "id": "4078ac00c2b4996f",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "flag_status_group",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "name": "Challenge 1 Status",
+        "label": "Challenge 1 - Life Support:",
+        "format": "{{msg.payload.flag}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1510,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "bff22ec4da48aec8",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "gold",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "FLAG 1 CAPTURED!",
+        "name": "Flag 1 Notification",
+        "x": 1520,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "415ed54717e0d444",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "flag_status_group",
+        "order": 2,
+        "width": "12",
+        "height": "1",
+        "name": "Challenge 2 Status",
+        "label": "Challenge 2 - Gate Access:",
+        "format": "{{msg.payload.flag}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1850,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "981785f7eab0efa0",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "gold",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "FLAG 2 CAPTURED!",
+        "name": "Flag 2 Notification",
+        "x": 1850,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76fde525745774fa",
+        "type": "mqtt in",
+        "z": "8f25e8ed5359ab96",
+        "name": "Challenge 3 Flag",
+        "topic": "silentfrikandel/deck4/challenge3/flag",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "0ed6133af769f598",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1240,
+        "y": 1420,
+        "wires": [
+            [
+                "e491d90923bcb355",
+                "493ca246839280bc"
+            ]
+        ]
+    },
+    {
+        "id": "e491d90923bcb355",
+        "type": "ui_text",
+        "z": "8f25e8ed5359ab96",
+        "group": "flag_status_group",
+        "order": 3,
+        "width": "12",
+        "height": "1",
+        "name": "Challenge 3 Status",
+        "label": "Challenge 3 - Defense Systems:",
+        "format": "{{msg.payload.flag}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1520,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "493ca246839280bc",
+        "type": "ui_toast",
+        "z": "8f25e8ed5359ab96",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "gold",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "FLAG 3 CAPTURED!",
+        "name": "Flag 3 Notification",
+        "x": 1530,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "e31d04f19f87630c",
+        "type": "comment",
+        "z": "8f25e8ed5359ab96",
+        "name": "Challenge 2 - Instruction",
+        "info": "Find the solution for solving challenge 2!\n\nTODO List:\n- Subscribe to silentfrikandel/deck4/gatecode/response\n- Information that you will get:\n    - For success condition:\n        {\n            \"status\": \"success\",\n            \"message\": \"Gate code accepted! Access granted.\",\n            \"flag\": \"_____\",\n            \"challenge\": \"challenge2\",\n            \"timestamp\": \"2024-11-12T15:30:45\"\n        }\n\n    - For un-success condition:\n        {\n            \"status\": \"error\",\n            \"message\": \"Incorrect gate code. Access denied.\",\n            \"submitted_code\": \"12345\",\n            \"timestamp\": \"2024-11-12T15:30:50\"\n        }\n- You should check the status of the message;\n- Then, you can extract the flag, if the status is \"success\"",
+        "x": 1270,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "6fe2a569b4711076",
+        "type": "comment",
+        "z": "8f25e8ed5359ab96",
+        "name": "Challenge 3 - Instruction",
+        "info": "Find the solution for solving challenge 3!\n\nTODO List:\n- You should connect these node correctly;\n- Understand what these node do;\n- Go to dashboard and activate the shield and launch the attack;\n- You will get the flags after finishing this challenge;",
+        "x": 2250,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8bd8dc1655b88a52",
+        "type": "comment",
+        "z": "8f25e8ed5359ab96",
+        "name": "SEND YOUR FLAGS, HERE!",
+        "info": "Dont forget to change the MQTT Topic and write the flags correctly!",
+        "x": 1110,
+        "y": 40,
+        "wires": []
+    }
+]

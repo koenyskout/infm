@@ -1,9 +1,11 @@
+from typing import override
 from common.PLC import IOModule, PLC_State, PLC, Tag
 from common.OPCUA_module import OPCUA_IO_Module
 from util import clamp
 import random
 
 class HeaterPLCState(PLC_State):
+    @override
     def _create_tags(self):
         # Current room temperature (from sensor)
         # not writable by PLC
@@ -43,7 +45,7 @@ class Heater_PLC(PLC):
 
 
 
-class PhysicalEnvModule(IOModule):
+class HeaterPhysicalEnvModule(IOModule):
     """
     Module die de koppeling maakt tussen de fysieke omgeving en de PLC.
     Simuleert de werking van sensoren en actuatoren.

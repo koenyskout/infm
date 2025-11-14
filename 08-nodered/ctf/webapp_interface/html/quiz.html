@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Quiz - Unlock the Gate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .back-button:hover {
+            background: white;
+            transform: translateX(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .mission-brief {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        .mission-brief h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .question {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .question h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.3s;
+            font-weight: bold;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .result.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .result.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .passcode {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            color: #667eea;
+        }
+        
+        .hint {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">Back to Challenges</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Automation Security Quiz</h1>
+            <p>Answer correctly to unlock the gate passcode</p>
+        </div>
+        
+        <div class="mission-brief">
+            <h3>Mission Objective:</h3>
+            <p>Captain Picard needs you to unlock the gate for accessing the peace treaty documents. Each correct answer gives you one digit of the 5-digit passcode. Answer all questions correctly to get the full passcode!</p>
+        </div>
+        
+        <form id="quizForm">
+            <div class="question">
+                <h3>Question 1: What does PLC stand for?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="2" required>
+                        Power Line Controller
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="7" required>
+                        Programmable Logic Controller
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="3" required>
+                        Pressure Level Control
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="9" required>
+                        Process Logic Computer
+                    </label>
+                </div>
+                <p class="hint">Hint: This digit is the first number in the passcode</p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 2: Which protocol is commonly used for IoT communication with low bandwidth?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2" value="6" required>
+                        HTTP
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="4" required>
+                        MQTT
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="1" required>
+                        FTP
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="8" required>
+                        SMTP
+                    </label>
+                </div>
+                <p class="hint">Hint: This digit is the second number in the passcode</p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 3: In a PID controller, what does the "I" stand for?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3" value="7" required>
+                        Input
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="2" required>
+                        Integral
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="5" required>
+                        Interface
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="9" required>
+                        Instruction
+                    </label>
+                </div>
+                <p class="hint">Hint: This digit is the third number in the passcode</p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 4: What type of sensor measures distance using sound waves?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4" value="4" required>
+                        Infrared Sensor
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="8" required>
+                        Ultrasonic Sensor
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="1" required>
+                        Capacitive Sensor
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="6" required>
+                        Temperature Sensor
+                    </label>
+                </div>
+                <p class="hint">Hint: This digit is the fourth number in the passcode</p>
+            </div>
+            
+            <div class="question">
+                <h3>Question 5: Which ladder logic symbol represents a normally open contact?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5" value="7" required>
+                        | |
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="3" required>
+                        |/|
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="5" required>
+                        ( )
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="2" required>
+                        [--]
+                    </label>
+                </div>
+                <p class="hint">Hint: This digit is the fifth number in the passcode</p>
+            </div>
+            
+            <button type="submit" class="submit-btn">UNLOCK GATE</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+    
+    <script>
+        const correctAnswers = {
+            q1: '7',
+            q2: '4',
+            q3: '2',
+            q4: '8',
+            q5: '7'
+        };
+        
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            let passcode = '';
+            let allCorrect = true;
+            
+            for (let i = 1; i <= 5; i++) {
+                const answer = formData.get('q' + i);
+                if (answer === correctAnswers['q' + i]) {
+                    passcode += answer;
+                } else {
+                    allCorrect = false;
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            
+            if (allCorrect) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '<h2>ACCESS GRANTED!</h2><p>Excellent work! You have successfully answered all questions correctly.</p><div class="passcode">' + passcode + '</div><p><strong>Gate Passcode: ' + passcode + '</strong></p><p>Use this passcode in Node-RED to unlock the emergency gate and help Captain Picard!</p><p style="margin-top: 15px;"><a href="index.html" style="color: #667eea; font-weight: bold;">Return to Challenges</a></p>';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '<h2>ACCESS DENIED!</h2><p>Some answers are incorrect. Please review your automation knowledge and try again.</p><p>Remember: Each correct answer gives you one digit of the passcode!</p>';
+            }
+            
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+        
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                const parent = this.parentElement;
+                parent.querySelectorAll('.option').forEach(opt => {
+                    opt.style.background = 'white';
+                    opt.style.borderColor = '#e0e0e0';
+                });
+                
+                this.style.background = '#e8eaf6';
+                this.style.borderColor = '#667eea';
+            });
+        });
+    </script>
+</body>
+</html>

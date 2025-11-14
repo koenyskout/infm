@@ -25,7 +25,9 @@ services:
     # Simulator for the CTF game (PLCs with OPC-UA)
     build: ./plc-sim
     ports:
-      - "4840:4840" # OPC-UA PLC
+      - "4840:4840" # Heater OPC-UA PLC
+      - "4841:4841" # Door OPC-UA PLC
+      - "4842:4842" # Oxygen OPC-UA PLC
     develop:
       watch:
         - action: sync+restart

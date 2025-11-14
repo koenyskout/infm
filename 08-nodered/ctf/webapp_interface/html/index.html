@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilentFrikandel - Distrinet KU Leuven</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 20px; 
+            margin: 0; 
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            padding: 80px 20px 20px 20px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 10px; 
+            position: relative;
+        }
+        .header h1 { 
+            font-size: 2.5em; 
+            margin-bottom: 10px; 
+            color: #ffd700; 
+        }
+        .logo-corners {
+            position: absolute;
+            z-index: 100;
+            top: 15px;
+            bottom: 10px;
+        }
+        .logo-top-left {
+            left: 20px;
+        }
+        .logo-top-right {
+            right: 20px;
+        }
+        .logo-top-center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .logo-corners img {
+            width: 80px;
+            height: auto;
+            background: rgba(255,255,255,0.9);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .student-id-section {
+            background: rgba(255,193,7,0.3);
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .student-id-input {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 2px solid #ffc107;
+            margin: 10px;
+            text-align: center;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+        .set-id-btn {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .set-id-btn:hover {
+            background: #ffb300;
+        }
+        .quiz-section { 
+            background: rgba(255,255,255,0.1); 
+            margin: 20px 0; 
+            padding: 25px; 
+            border-radius: 10px; 
+            position: relative;
+        }
+        .quiz-section h2 { 
+            color: #ffd700; 
+            margin-bottom: 15px; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quiz-section.locked{
+            opacity: 0.4;
+            pointer-events: none;
+            filter: blur(2px);
+        }
+        .quiz-section.locked::before {
+            content:'LOCKED';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            color: #ff6b6b;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 2px solid #ff6b6b;
+        }
+        .sequence-display { 
+            background: rgba(255,255,255,0.9); 
+            color: #333; 
+            padding: 15px; 
+            border-radius: 5px; 
+            font-size: 1.5em; 
+            text-align: center; 
+            margin: 20px 0; 
+            font-weight: bold; 
+        }
+        .mqtt-info { 
+            background: rgba(0,0,0,0.4); 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin: 15px 0; 
+            font-family: monospace; 
+        }
+        .mqtt-info code { 
+            color: #ffd700; 
+            background: rgba(0,0,0,0.3); 
+            padding: 2px 6px; 
+            border-radius: 3px; 
+        }
+        .hint-box { 
+            background: rgba(0,255,0,0.1); 
+            border: 1px solid #00ff00; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin: 15px 0; 
+        }
+        .story-content{
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .mission-box{
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #ffd700;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .mission-box h4 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        .instructions { 
+            background: rgba(255,193,7,0.2); 
+            border: 2px solid #ffc107; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+        }
+        .instructions h3 { 
+            color: #ffc107; 
+            margin-bottom: 10px; 
+        }
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding: 20px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 10px; 
+        }
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .current-student {
+            background: rgba(0,255,0,0.2);
+            border: 1px solid #00ff00;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .challenge-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            gap: 5px;
+        }
+        .status-unlocked{
+            background: #2196F3;
+            color: white;
+        }
+        .status-locked {
+            background: #666;
+            color:#ccc;
+        }
+        .status-complete {
+            background: #4CAF50;
+            color: white;
+        }
+        @keyframes pulse{
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .feedback-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            max-width: 350px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease-out;
+            transition: opacity 0.3s ease-out;
+        }
+        .feedback-success {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-left: 4px solid #2E7D32;
+        }
+        .feedback-error {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            border-left: 4px solid #E65100;
+        }
+        .feedback-hint {
+            font-size: 0.9em;
+            margin-top: 8px;
+            opacity: 0.9;
+            font-weight: normal;
+        }
+        .mqtt-status {
+            background: rgba(0,0,0,0.6);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        .mqtt-connected {
+            color: #4CAF50;
+        }
+        .mqtt-disconnected {
+            color: #f44336;
+        }
+        .mqtt-connecting {
+            color: #ff9800;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        .challenge-music-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1976D2, #1565C0);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .challenge-music-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+        .challenge-music-btn.playing {
+            background: linear-gradient(135deg, #ff5722, #e64a19);
+        }
+        .red-alert {
+            color: #ff6b6b;
+            font-style: italic;
+        }
+        .captain-message {
+            font-weight: bold;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" loop>
+        <source src="background.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="challenge1-music" loop>
+        <source src="challenge1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="challenge3-music" loop>
+        <source src="underattack1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button id="music-toggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 2000; padding: 15px 20px; background: rgba(0,0,0,0.7); color: white; border: 2px solid #ffd700; border-radius: 50px; cursor: pointer; font-size: 1em;">
+            Music: OFF
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-corners logo-top-left">
+                <img src="images/kul_logo.png" alt="KU Leuven Logo" title="KU Leuven">
+            </div>
+            <div class="logo-corners logo-top-center">
+                <img src="images/distrinetLogo.jpg" alt="DistriNet Logo" title="DistriNet Research Group">
+            </div>
+            <div class="logo-corners logo-top-right">
+                <img src="images/uhasselt.png" alt="UHasselt Logo" title="UHasselt">
+            </div>
+            
+            <h1>SilentFrikandel Corps</h1>
+            <p>Starfleet Engineering Division - NodeRED Emergency Response Protocol</p>
+            <p><strong>Mission:</strong> Prevent interstellar war by saving the ship's critical systems | Solve some challenge on MQTT and NodeRED</p>
+        </div>
+
+        <div class="student-id-section" id="student-setup">
+            <h2>SilentFrikandel Engineering Login</h2>
+            <p>Choose a unique ID (letters and numbers only, no spaces)</p>
+            <input type="text" id="student-id-input" class="student-id-input" placeholder="Enter your student ID (e.g., student1, john, team_a)" maxlength="20">
+            <br>
+            <button id="set-student-id" class="set-id-btn">Connect to the system</button>
+        </div>
+
+        <div id="current-student-display" class="current-student" style="display: none;">
+            <div>Your Engineering ID: <span id="current-student-id"></span></div>
+            <div id="mqtt-status" class="mqtt-status mqtt-disconnected">MQTT: Disconnected</div>
+            <button onclick="changeStudentId()" style="margin-left: 10px; padding: 5px 10px; background: #ff6b6b; color: white; border: none; border-radius: 3px; cursor: pointer;">Change ID</button>
+        </div>
+
+        <div id="quiz-content" class="disabled">
+            <div style="background: rgba(255,215,0,0.1); border: 2px solid #ffd700; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                <h2 style="color: #ffd700; text-align: center; margin-bottom: 20px;">Main Story Arc: "The Romulan Sabotage"</h2>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+                    <h3 style="color: #ffc107; margin-bottom: 10px;">Mission Background</h3>
+                    <p style="line-height: 1.8;">The USS SilentFrikandel, a Galaxy-class starship, is on a critical diplomatic mission to establish a new peace treaty with the Romulan Empire. However, Romulan extremists have infiltrated the ship's systems, attempting to sabotage the mission and frame the Federation for an act of war.</p>
+                    <p style="margin-top: 15px; font-style: italic; color: #ffd700;">Your mission as a SilentFrikandel Engineer is to help Captain Picard and his crew overcome these sabotage attempts and save the peace negotiations. The fate of two civilizations rests in your hands.</p>
+                </div>
+            </div>
+            <div class="quiz-section">
+                <h2>Challenge 1: Life Support Crisis - Help Captain Jean-Luc Picard
+                    <span class="challenge-status status-unlocked" id="status-challenge1">
+                        UNLOCKED
+                    </span>
+                </h2>
+                <p><strong>PRIORITY ONE: Restore Life Support to Deck 4</strong></p>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/challenge1.png" alt="Challenge 1" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                </div>
+
+                <div style="text-align: center; margin: 20px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                    <button id="challenge1-music-toggle" class="challenge-music-btn">
+                        Emergency Broadcast
+                    </button>
+                    <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">Captain Picard's emergency message</p>
+                </div>
+
+                <div class="story-content">
+                    <p class="red-alert">[RED ALERT - ALL HANDS TO STATIONS]</p>
+                    <p class="captain-message">"This is Captain Jean-Luc Picard. We have a Code Red emergency on Deck 4.</p>
+                    <p>During our approach to the Neutral Zone for critical peace negotiations, Romulan saboteurs have triggered an explosive decompression of our AI core deck. All four emergency bulkheads have been blown open, and we're venting atmosphere into space at an alarming rate.</p>
+                    <p>The crew has been evacuated, but our ship's main AI core - which contains the diplomatic protocols and star charts essential for the peace treaty - remains on that deck. Without it, our mission fails, and war with the Romulans becomes inevitable.</p>
+                    <p class="red-alert">Current oxygen levels: 8% and falling rapidly.</p>
+                    <p class="captain-message">We need our best Engineer to take remote control. Make it so!"</p>
+                </div>
+                <div class="mission-box">
+                    <h4>Your Mission:</h4>
+                    <ol>
+                        <li>Access the Node-RED control interface on <a href="http://localhost:1880" target="_blank">http://localhost:1880</a> and find and open the Dashboard</li>
+                        <li>Close all four emergency doors to seal the deck</li>
+                        <li>Once sealed, activate the emergency oxygen system</li>
+                        <li>Restore oxygen levels to at least 18% to save the AI core</li>
+                    </ol>
+                </div>
+
+                <div class="mqtt-info">
+                    <strong>Engineering Protocol:</strong> Flag will auto-transmit when oxygen reaches safe levels<br>
+                    <strong>MQTT Topic:</strong> <code id="challenge1-topic">silentfrikandel/YOUR_ID/challenge1/flag</code><br>
+                    <strong>Message:</strong> <code>{"flag": "YOUR_FLAG_HERE"}</code>
+                </div>
+            </div>
+
+            <div class="quiz-section locked" id="challenge2-section">
+                <h2>Challenge 2: Opening the Gate - Find the key
+                    <span class="challenge-status status-locked" id="status-challenge2">
+                        LOCKED
+                    </span>
+                </h2>
+                <p><strong>PRIORITY TWO: Access the Diplomatic Quarters</strong></p>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/deck4New.png" alt="Deck 4 Blueprint" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                </div>
+                <div style="text-align: center; margin: 20px 0;">
+                    <a href="quiz.html" target="_blank" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                        Open Automation Quiz
+                    </a>
+                </div>
+                <div class="story-content">
+                    <p class="captain-message">"Excellent work on restoring life support! However, our troubles are far from over.</p>
+                    <p>The Romulan saboteur has locked down our access to the diplomatic quarters where the peace treaty documents are stored. They've encrypted the turbolift system with a Romulan cipher.</p>
+                    <p>Our intelligence indicates the saboteur hid the 6-digit access code somewhere in our ship's public information systems - likely in the maintenance documentation. They're arrogant enough to believe we won't find it in time.</p>
+                    <p>Commander Data has traced unusual access patterns to the ship's technical manuals. The code must be hidden there, you need to help us to find the gate code!.</p>
+                    <p class="red-alert">Time is of the essence. The Romulan fleet arrives in 30 minutes!"</p>
+                </div>
+                <div class="mission-box">
+                    <h4>Your Mission:</h4>
+                    <ol>
+                        <li>Access the Automation Quiz above!</li>
+                        <li>Answer all of the questions correctly</li>
+                        <li>Locate the 6-digit gate code</li>
+                        <li>Enter it in the Node-RED security panel to unlock the diplomatic quarters gate</li>
+                    </ol>
+                </div>
+                <div class="hint-box">
+                    <strong>Hints:</strong><br>
+                    • The gate code is not the flags -> You should enter the code on the NodeRED Dashboard to get the flags<br>
+                    • The code is 6 digits<br>
+                </div>
+                
+                <div class="mqtt-info">
+                    <strong>MQTT Topic:</strong> <code id="challenge2-topic">silentfrikandel/YOUR_ID/challenge2/flag</code><br>
+                    <strong>Message:</strong> <code>{"flag": "YOUR_FLAG_HERE"}</code>
+                </div>
+            </div>
+
+            <div class="quiz-section locked" id="challenge3-section">
+                <h2>Challenge 3: The Tal Shiar Attack - Activating the sheild and lauch the counter attack
+                    <span class="challenge-status status-locked" id="status-challenge3">
+                        LOCKED
+                    </span>
+                </h2>
+                <p><strong>RED ALERT: Ship Under Attack!</strong></p>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/challenge3.png" alt="Challenge 3" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                    <button id="challenge3-music-toggle" class="challenge-music-btn" style="background: linear-gradient(135deg, #f44336, #d32f2f);">
+                        Audio
+                    </button>
+                    <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">Red alert! All hands to battle stations!</p>
+                </div>
+                
+                 <div class="story-content">
+                    <p class="red-alert">[WEAPONS FIRE DETECTED - SHIELDS OFFLINE]</p>
+                    <p class="captain-message">"Red Alert! All hands to battle stations! This is Captain Picard.</p>
+                    <p>We've been betrayed! The Romulan extremists were actually Tal Shiar agents, and they've signaled a cloaked Warbird that's now attacking our position!</p>
+                    <p>Their first salvo has damaged our tactical systems. We cannot return fire or raise shields through normal controls. However, Mr. La Forge has identified a workaround through the Node-RED emergency tactical interface.</p>
+                    <p class="red-alert">WARNING: Multiple torpedo locks detected. Hull breach imminent!</p>
+                    <p>The tactical sequence is critical: shields MUST be raised first to survive their next barrage, then immediately launch our counter-attack to disable their weapons. Failure to follow this exact sequence will result in our destruction.</p>
+                    <p class="captain-message">All hands, this is not a drill! Engage!"</p>
+                </div>
+
+                <div class="mission-box">
+                    <h4>Your Mission:</h4>
+                    <ol>
+                        <li>Access the Node-RED control interface</li>
+                        <li>Connect the node correctly on NodeRED to activate the shield and launch attack</li>
+                        <li>Once connected, try to understand how it works!</li>
+                        <li>Activate the shield and launch the attack to get the flag</li>
+                    </ol>
+                </div>
+                
+                <div class="mqtt-info">
+                    <strong>MQTT Topic:</strong> <code id="challenge3-topic">silentfrikandel/YOUR_ID/challenge3/flag</code><br>
+                    <strong>Message:</strong> <code>{"flag": "YOUR_FLAG_HERE"}</code>
+                </div>
+            </div>
+
+            <div class="quiz-section locked" id="challenge4-section">
+                <h2>Challenge 4: Engineering Crisis - Help Chief Engineer Geordi LaForge
+                    <span class="challenge-status status-locked" id="status-challenge4">
+                        LOCKED
+                    </span>
+                </h2>
+                <p><strong>PRIORITY FOUR: Warp Core Monitoring System</strong></p>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/challenge2.png" alt="Challenge 4" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                </div>
+                <div class="story-content">
+                    <p class="captain-message">"This is Commander La Forge in Main Engineering.</p>
+                    <p>Outstanding work helping the Captain! But we've got a new crisis down here. That Romulan attack damaged our warp core monitoring systems. We're flying blind!</p>
+                    <p>I need someone to set up a new sensor monitoring dashboard using Node-RED before we can jump to warp and escape the Neutral Zone. Without proper monitoring, attempting warp could cause a core breach.</p>
+                    <p>The good news: I've already got sensors transmitting data from Deck 5's environmental systems - temperature, pressure, and radiation levels around the warp core. The bad news: I can't see any of it from here!</p>
+                    <p class="red-alert">Warning: Romulan reinforcements detected. We need warp capability in 10 minutes!</p>
+                    <p>Once we have real-time monitoring with proper alerts, we can safely engage warp drive and get out of here.</p>
+                    <p class="captain-message">I'm counting on you - Geordi out!"</p>
+                </div>
+
+                <div class="mission-box">
+                    <h4>Mission Objectives:</h4>
+                    <ol>
+                        <li>Create a new Node-RED monitoring dashboard</li>
+                        <li>Subscribe to MQTT topics: <code>silentfrikandel/deck5/#</code></li>
+                        <li>Display real-time gauges for all sensor readings</li>
+                        <li>Configure alerts for out-of-range values:</li>
+                        <ul>
+                            <li>Temperature: 20-25°C (normal range)</li>
+                            <li>Pressure: 98-102 kPa (safe zone)</li>
+                            <li>Radiation: Must stay below critical</li>
+                        </ul>
+                    </ol>
+                </div>
+
+                <div style="background: rgba(0,255,255,0.1); border: 2px solid #00ffff; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h4 style="color: #00ffff; margin-bottom: 15px;">Available Ship Sensors & MQTT Topics</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+                            <h5 style="color: #ffd700; margin-bottom: 10px;">Environmental Control</h5>
+                            <ul style="list-style: none; padding: 0; font-family: monospace; font-size: 0.9em;">
+                                <li>Oxygen Level: <code style="color: #00ff00;">silentfrikandel/deck5/oxygen</code></li>
+                                <li>Temperature: <code style="color: #00ff00;">silentfrikandel/deck5/temperature</code></li>
+                                <li>Pressure: <code style="color: #00ff00;">silentfrikandel/deck5/pressure</code></li>
+                            </ul>
+                            <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">Normal ranges: O2: 19-23%, Temp: 20-25°C, Pressure: 98-102 kPa</p>
+                        </div>
+                        
+                        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+                            <h5 style="color: #ffd700; margin-bottom: 10px;">Flight Dynamics</h5>
+                            <ul style="list-style: none; padding: 0; font-family: monospace; font-size: 0.9em;">
+                                <li>Altitude: <code style="color: #00ff00;">silentfrikandel/deck5/flight/altitude</code></li>
+                                <li>Airspeed: <code style="color: #00ff00;">silentfrikandel/deck5/flight/airspeed</code></li>
+                                <li>Heading: <code style="color: #00ff00;">silentfrikandel/deck5/flight/heading</code></li>
+                                <li>Pitch: <code style="color: #00ff00;">silentfrikandel/deck5/flight/pitch</code></li>
+                                <li>Roll: <code style="color: #00ff00;">silentfrikandel/deck5/flight/roll</code></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+                            <h5 style="color: #ffd700; margin-bottom: 10px;">Engine Systems</h5>
+                            <ul style="list-style: none; padding: 0; font-family: monospace; font-size: 0.9em;">
+                                <li>Engine 1 RPM: <code style="color: #00ff00;">silentfrikandel/deck5/engine/rpm1</code></li>
+                                <li>Engine 2 RPM: <code style="color: #00ff00;">silentfrikandel/deck5/engine/rpm2</code></li>
+                                <li>Engine 1 Temp: <code style="color: #00ff00;">silentfrikandel/deck5/engine/egt1</code></li>
+                                <li>Engine 2 Temp: <code style="color: #00ff00;">silentfrikandel/deck5/engine/egt2</code></li>
+                                <li>Fuel Remaining: <code style="color: #00ff00;">silentfrikandel/deck5/engine/fuel</code></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+                            <h5 style="color: #ffd700; margin-bottom: 10px;">Electrical Systems</h5>
+                            <ul style="list-style: none; padding: 0; font-family: monospace; font-size: 0.9em;">
+                                <li>Battery Voltage: <code style="color: #00ff00;">silentfrikandel/deck5/electrical/battery</code></li>
+                                <li>Generator 1: <code style="color: #00ff00;">silentfrikandel/deck5/electrical/gen1</code></li>
+                                <li>Generator 2: <code style="color: #00ff00;">silentfrikandel/deck5/electrical/gen2</code></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+                            <h5 style="color: #ffd700; margin-bottom: 10px;">Starship Systems</h5>
+                            <ul style="list-style: none; padding: 0; font-family: monospace; font-size: 0.9em;">
+                                <li>Warp Core Temp: <code style="color: #00ff00;">silentfrikandel/deck5/starship/warp_temp</code></li>
+                                <li>Shield Strength: <code style="color: #00ff00;">silentfrikandel/deck5/starship/shields</code></li>
+                                <li>Antimatter Flow: <code style="color: #00ff00;">silentfrikandel/deck5/starship/antimatter</code></li>
+                            </ul>
+                            <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">Critical: Warp temp > 2100K, Shields < 20%</p>
+                        </div>
+                        
+                        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+                            <h5 style="color: #ffd700; margin-bottom: 10px;">Combined JSON Data</h5>
+                            <p style="font-family: monospace; font-size: 0.9em;">All sensors combined:<br>
+                            <code style="color: #00ff00;">silentfrikandel/deck5/all</code></p>
+                            <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">Contains all sensor data in JSON format for advanced processing</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,0,0.1); border-radius: 5px;">
+                        <h5 style="color: #ffff00; margin-bottom: 10px;">Dashboard Requirements:</h5>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>Monitor at least 5 different sensor types</li>
+                            <li>Use appropriate gauge types (gauge, donut, wave, chart)</li>
+                            <li>Implement visual alerts for critical values</li>
+                            <li>Create a professional bridge-style layout</li>
+                            <li>BONUS: Add trend charts for historical data</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="hint-box">
+                    <strong>Engineering Notes:</strong><br>
+                    • Use MQTT in nodes to subscribe to sensor topics<br>
+                    • Dashboard gauge nodes for visualization<br>
+                    • Function nodes to check thresholds and trigger alerts<br>
+                    • La Forge needs clear visual indicators of system status
+                </div>
+                
+                <div class="mqtt-info">
+                    <strong>MQTT Topic:</strong> <code id="challenge4-topic">silentfrikandel/YOUR_ID/challenge4/flag</code><br>
+                    <strong>Message:</strong> <code>{"flag": "YOUR_FLAG_HERE"}</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Distrinet KU Leuven</p>
+        </div>
+    </div>
+    
+    <!-- MQTT Client Library -->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    
+    <script>
+        let currentStudentId = '';
+        let mqttClient = null;
+        let mqttStatus = 'disconnected';
+        
+        // Background Music Control
+        let musicPlaying = false;
+        const audio = document.getElementById('background-music');
+        const musicToggle = document.getElementById('music-toggle');
+
+        // Challenge 1 Music Control
+        let challenge1MusicPlaying = false;
+        const challenge1Audio = document.getElementById('challenge1-music');
+        const challenge1MusicToggle = document.getElementById('challenge1-music-toggle');
+
+        // Challenge 3 Music Control
+        let challenge3MusicPlaying = false;
+        const challenge3Audio = document.getElementById('challenge3-music');
+        const challenge3MusicToggle = document.getElementById('challenge3-music-toggle');
+
+        let challengeStates = JSON.parse(localStorage.getItem('challengeStates')) || {
+            challenge1: { unlocked: true, completed: false },
+            challenge2: { unlocked: false, completed: false },
+            challenge3: { unlocked: false, completed: false },
+            challenge4: { unlocked: false, completed: false }
+        };
+
+        // Set initial volume (0.3 = 30% volume)
+        audio.volume = 0.3;
+        challenge1Audio.volume = 0.4;
+        challenge3Audio.volume = 0.5; // Battle music slightly louder
+
+        musicToggle.addEventListener('click', function() {
+            if (musicPlaying) {
+                audio.pause();
+                musicToggle.textContent = 'Music: OFF';
+                musicToggle.style.background = 'rgba(0,0,0,0.7)';
+                musicPlaying = false;
+            } else {
+                audio.play();
+                musicToggle.textContent = 'Music: ON';
+                musicToggle.style.background = 'rgba(255,215,0,0.3)';
+                musicPlaying = true;
+
+                if (challenge1MusicPlaying) {
+                    challenge1Audio.pause();
+                    challenge1MusicToggle.textContent = 'Audio';
+                    challenge1MusicToggle.classList.remove('playing');
+                    challenge1MusicPlaying = false;
+                }
+                
+                if (challenge3MusicPlaying) {
+                    challenge3Audio.pause();
+                    challenge3MusicToggle.textContent = 'Battle Stations!';
+                    challenge3MusicToggle.classList.remove('playing');
+                    challenge3MusicPlaying = false;
+                }
+            }
+        });
+
+        // Challenge 1 music toggle
+        challenge1MusicToggle.addEventListener('click', function() {
+            if (challenge1MusicPlaying) {
+                challenge1Audio.pause();
+                challenge1MusicToggle.textContent = 'Audio';
+                challenge1MusicToggle.classList.remove('playing');
+                challenge1MusicPlaying = false;
+                
+                // Resume background music if it was playing
+                if (musicPlaying) {
+                    audio.play();
+                }
+            } else {
+                // Pause background music
+                if (musicPlaying) {
+                    audio.pause();
+                }
+                
+                // Pause Challenge 3 music if playing
+                if (challenge3MusicPlaying) {
+                    challenge3Audio.pause();
+                    challenge3MusicToggle.textContent = 'Battle Stations!';
+                    challenge3MusicToggle.classList.remove('playing');
+                    challenge3MusicPlaying = false;
+                }
+                
+                challenge1Audio.play();
+                challenge1MusicToggle.textContent = 'Audio: OFF';
+                challenge1MusicToggle.classList.add('playing');
+                challenge1MusicPlaying = true;
+            }
+        });
+
+        // When challenge music ends, resume background music if it was playing
+        challenge1Audio.addEventListener('ended', function() {
+            challenge1MusicToggle.textContent = 'Audio';
+            challenge1MusicToggle.classList.remove('playing');
+            challenge1MusicPlaying = false;
+            
+            if (musicPlaying) {
+                audio.play();
+            }
+        });
+
+        // Challenge 3 music toggle
+        if (challenge3MusicToggle) {
+            challenge3MusicToggle.addEventListener('click', function() {
+                if (challenge3MusicPlaying) {
+                    challenge3Audio.pause();
+                    challenge3MusicToggle.textContent = 'Battle Stations!';
+                    challenge3MusicToggle.classList.remove('playing');
+                    challenge3MusicPlaying = false;
+                    
+                    // Resume background music if it was playing
+                    if (musicPlaying) {
+                        audio.play();
+                    }
+                } else {
+                    // Pause background music
+                    if (musicPlaying) {
+                        audio.pause();
+                    }
+                    
+                    // Pause Challenge 1 music if playing
+                    if (challenge1MusicPlaying) {
+                        challenge1Audio.pause();
+                        challenge1MusicToggle.textContent = 'Audio';
+                        challenge1MusicToggle.classList.remove('playing');
+                        challenge1MusicPlaying = false;
+                    }
+                    
+                    challenge3Audio.play();
+                    challenge3MusicToggle.textContent = 'Stop Battle Music';
+                    challenge3MusicToggle.classList.add('playing');
+                    challenge3MusicPlaying = true;
+                }
+            });
+
+            // When challenge 3 music ends, resume background music if it was playing
+            challenge3Audio.addEventListener('ended', function() {
+                challenge3MusicToggle.textContent = 'Battle Stations!';
+                challenge3MusicToggle.classList.remove('playing');
+                challenge3MusicPlaying = false;
+                
+                if (musicPlaying) {
+                    audio.play();
+                }
+            });
+        }
+
+        // Auto-play on first user interaction (browsers block auto-play without user interaction)
+        /*
+        document.addEventListener('click', function playOnFirstClick() {
+            if (!musicPlaying && !challenge1MusicPlaying) {
+                audio.play();
+                musicToggle.textContent = 'Music: ON';
+                musicToggle.style.background = 'rgba(255,215,0,0.3)';
+                musicPlaying = true;
+            }
+            document.removeEventListener('click', playOnFirstClick);
+        }, { once: true });
+        */
+
+        document.addEventListener('DOMContentLoaded', function() {
+            applySavedChallengeStates();
+            document.getElementById('set-student-id').addEventListener('click', setStudentId);
+            document.getElementById('student-id-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    setStudentId();
+                }
+            });
+            
+            const savedStudentId = localStorage.getItem('studentId');
+            if (savedStudentId){
+                document.getElementById('student-id-input').value = savedStudentId;
+                setStudentId();
+            }
+        });
+        
+        function applySavedChallengeStates() {
+            for (let i = 1; i <= 4; i++) {
+                const challengeKey = 'challenge' + i;
+                const state = challengeStates[challengeKey];
+                const section = document.getElementById(challengeKey + '-section');
+                const status = document.getElementById('status-' + challengeKey);
+        
+                if (section && status && state) {
+                    // Apply unlocked state
+                    if (state.unlocked) {
+                        section.classList.remove('locked');
+                        status.className = 'challenge-status status-unlocked';
+                        status.textContent = 'UNLOCKED';
+                    }
+            
+                    // Apply completed state
+                    if (state.completed) {
+                        status.className = 'challenge-status status-completed';
+                        status.textContent = 'COMPLETED';
+                    }
+                }
+            }
+        }
+
+        function setStudentId() {
+            const input = document.getElementById('student-id-input');
+            const studentId = input.value.trim();
+            
+            if (studentId === '') {
+                alert('Please enter a student ID');
+                return;
+            }
+            
+            if (!/^[a-zA-Z0-9_]+$/.test(studentId)) {
+                alert('Student ID can only contain letters, numbers, and underscores');
+                return;
+            }
+            
+            if (studentId.length < 3) {
+                alert('Student ID must be at least 3 characters long');
+                return;
+            }
+            
+            currentStudentId = studentId;
+            localStorage.setItem('studentId', studentId);
+            
+            document.getElementById('current-student-id').textContent = studentId;
+            document.getElementById('current-student-display').style.display = 'block';
+            document.getElementById('student-setup').style.display = 'none';
+            document.getElementById('quiz-content').classList.remove('disabled');
+            
+            document.getElementById('challenge1-topic').textContent = 'silentfrikandel/' + studentId + '/challenge1/flag';
+            document.getElementById('challenge2-topic').textContent = 'silentfrikandel/' + studentId + '/challenge2/flag';
+            document.getElementById('challenge3-topic').textContent = 'silentfrikandel/' + studentId + '/challenge3/flag';
+            document.getElementById('challenge4-topic').textContent = 'silentfrikandel/' + studentId + '/challenge4/flag';
+            
+            connectToMQTT(studentId);
+        }
+        
+        function connectToMQTT(studentId) {
+            updateMQTTStatus('connecting', 'Connecting to MQTT...');
+            
+            try {
+                mqttClient = mqtt.connect('ws://localhost:9001', {
+                    clientId: 'quiz_student_' + studentId + '_' + Math.random().toString(16).substr(2, 8),
+                    clean: true,
+                    connectTimeout: 10000,
+                    reconnectPeriod: 5000
+                });
+                
+                mqttClient.on('connect', function() {
+                    updateMQTTStatus('connected', 'Connected to MQTT broker');
+                    console.log('MQTT connected for student:', studentId);
+                    
+                    const feedbackTopics = [
+                        'silentfrikandel/' + studentId + '/challenge1/feedback',
+                        'silentfrikandel/' + studentId + '/challenge2/feedback',
+                        'silentfrikandel/' + studentId + '/challenge3/feedback',
+                        'silentfrikandel/' + studentId + '/challenge4/feedback',
+                        'quiz/status/' + studentId + '/#',
+                        'quiz/unlock/' + studentId + '/#'
+                    ];
+
+                    feedbackTopics.forEach(function(topic) {
+                        mqttClient.subscribe(topic, function(err) {
+                            if (!err) {
+                                console.log('Subscribed to:', topic);
+                            }
+                        });
+                    });
+
+                    showFeedback({
+                        success: true,
+                        message: 'Connected to quiz system! Good luck!',
+                        student_id: studentId
+                    });
+                });
+
+                mqttClient.on('message', function(topic, message) {
+                    try {
+                        const data = JSON.parse(message.toString());
+                        console.log('Received message:', topic, data);
+                        
+                        if (topic.includes('/unlock/')) {
+                            handleChallengeUnlock(data);
+                        } else if (topic.includes('/status/')) {
+                            updateChallengeStatus(data);
+                        } else if (topic.includes('/feedback')) {
+                            showFeedback(data);
+                        }
+                    } catch (e) {
+                        console.error('Error parsing message:', e);
+                    }
+                });
+
+                mqttClient.on('error', function(error) {
+                    updateMQTTStatus('disconnected', 'Connection error');
+                    console.error('MQTT error:', error);
+                });
+                
+                mqttClient.on('disconnect', function() {
+                    updateMQTTStatus('disconnected', 'Disconnected');
+                });
+                
+                mqttClient.on('reconnect', function() {
+                    updateMQTTStatus('connecting', 'Reconnecting...');
+                });
+                
+            } catch (error) {
+                updateMQTTStatus('disconnected', 'Connection failed');
+                console.error('Failed to create MQTT connection:', error);
+            }
+        }
+        
+        function handleChallengeUnlock(data) {
+            const challengeNum = data.challenge;
+            const challengeKey = 'challenge' + challengeNum;
+    
+            if (challengeStates[challengeKey]) {
+                challengeStates[challengeKey].unlocked = true;
+                localStorage.setItem('challengeStates', JSON.stringify(challengeStates));
+        
+                const section = document.getElementById(challengeKey + '-section');
+                const status = document.getElementById('status-' + challengeKey);
+        
+                if (section && status) {
+                    section.classList.remove('locked');
+                    status.className = 'challenge-status status-unlocked';
+                    status.textContent = 'UNLOCKED';
+            
+                    showFeedback({
+                        success: true,
+                        message: 'Challenge ' + challengeNum + ' unlocked! You can now solve it.'
+                    });
+                }
+            }
+        }
+
+        function updateMQTTStatus(status, message) {
+            mqttStatus = status;
+            const statusElement = document.getElementById('mqtt-status');
+            if (statusElement) {
+                statusElement.className = 'mqtt-status mqtt-' + status;
+                statusElement.textContent = 'MQTT: ' + message;
+            }
+        }
+
+        function updateChallengeStatus(statusData) {
+            const challengeName = statusData.challenge;
+            const completed = statusData.completed;
+            const statusElement = document.getElementById('status-' + challengeName);
+            const challengeKey = challengeName;
+
+            if (statusElement) {
+                if (completed) {
+                    statusElement.className = 'challenge-status status-completed';
+                    statusElement.textContent = 'COMPLETED';
+                } else {
+                    statusElement.className = 'challenge-status status-pending';
+                    statusElement.textContent = 'In Progress';
+                }
+                console.log('Updated status:', challengeName, completed);
+            }
+            
+            if (challengeStates[challengeKey]) {
+                challengeStates[challengeKey].completed = completed;
+                localStorage.setItem('challengeStates', JSON.stringify(challengeStates));
+            }
+        }
+        
+        function showFeedback(feedback) {
+            const existingFeedback = document.querySelector('.feedback-notification');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+            
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.className = 'feedback-notification ' + (feedback.success ? 'feedback-success' : 'feedback-error');
+            
+            let content = '<div><strong>' + feedback.message + '</strong></div>';
+            
+            if (feedback.total_time) {
+                content += '<div class="feedback-hint">Time: ' + feedback.total_time + '</div>';
+            }
+            
+            feedbackDiv.innerHTML = content;
+            document.body.appendChild(feedbackDiv);
+            
+            setTimeout(function() {
+                if (feedbackDiv.parentNode) {
+                    feedbackDiv.style.animation = 'fadeOut 0.3s ease-out';
+                    setTimeout(function() {
+                        if (feedbackDiv.parentNode) {
+                            feedbackDiv.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+        
+        function changeStudentId() {
+            if (mqttClient && mqttClient.connected) {
+                mqttClient.end();
+                mqttClient = null;
+            }
+
+            localStorage.removeItem('studentId');
+            localStorage.removeItem('challengeStates');
+
+            challengeStates = {
+                challenge1: { unlocked: true, completed: false },
+                challenge2: { unlocked: false, completed: false },
+                challenge3: { unlocked: false, completed: false },
+                challenge4: { unlocked: false, completed: false }
+            };
+
+            document.getElementById('challenge2-section').classList.add('locked');
+            document.getElementById('challenge3-section').classList.add('locked');
+            document.getElementById('challenge4-section').classList.add('locked');
+            
+            document.getElementById('status-challenge1').className = 'challenge-status status-unlocked';
+            document.getElementById('status-challenge1').textContent = 'UNLOCKED';
+            document.getElementById('status-challenge2').className = 'challenge-status status-locked';
+            document.getElementById('status-challenge2').textContent = 'LOCKED';
+            document.getElementById('status-challenge3').className = 'challenge-status status-locked';
+            document.getElementById('status-challenge3').textContent = 'LOCKED';
+            document.getElementById('status-challenge4').className = 'challenge-status status-locked';
+            document.getElementById('status-challenge4').textContent = 'LOCKED';
+
+            currentStudentId = '';
+            document.getElementById('student-id-input').value = '';
+            document.getElementById('current-student-display').style.display = 'none';
+            document.getElementById('student-setup').style.display = 'block';
+            document.getElementById('quiz-content').classList.add('disabled');
+            
+            document.getElementById('challenge1-topic').textContent = 'silentfrikandel/YOUR_ID/challenge1/flag';
+            document.getElementById('challenge2-topic').textContent = 'silentfrikandel/YOUR_ID/challenge2/flag';
+            document.getElementById('challenge3-topic').textContent = 'silentfrikandel/YOUR_ID/challenge3/flag';
+            document.getElementById('challenge4-topic').textContent = 'silentfrikandel/YOUR_ID/challenge4/flag';
+            
+            updateMQTTStatus('disconnected', 'Disconnected');
+            
+            const existingFeedback = document.querySelector('.feedback-notification');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+        }
+        
+        window.addEventListener('beforeunload', function() {
+            if (mqttClient && mqttClient.connected) {
+                mqttClient.end();
+            }
+        });
+    </script>
+</body>
+</html>
